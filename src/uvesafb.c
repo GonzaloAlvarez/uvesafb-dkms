@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * A framebuffer driver for VBE 2.0+ compliant video cards
  *
@@ -29,160 +30,6 @@
 #endif
 #include "edid.h"
 
-#ifdef CONFIG_FB_VMODES
-const struct fb_videomode fb_vesa_modes[] = {
-        /* 0 640x350-85 VESA */
-        { NULL, 85, 640, 350, 31746,  96, 32, 60, 32, 64, 3,
-          FB_SYNC_HOR_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA},
-        /* 1 640x400-85 VESA */
-        { NULL, 85, 640, 400, 31746,  96, 32, 41, 01, 64, 3,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 2 720x400-85 VESA */
-        { NULL, 85, 721, 400, 28169, 108, 36, 42, 01, 72, 3,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 3 640x480-60 VESA */
-        { NULL, 60, 640, 480, 39682,  48, 16, 33, 10, 96, 2,
-          0, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 4 640x480-72 VESA */
-        { NULL, 72, 640, 480, 31746, 128, 24, 29, 9, 40, 2,
-          0, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 5 640x480-75 VESA */
-        { NULL, 75, 640, 480, 31746, 120, 16, 16, 01, 64, 3,
-          0, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 6 640x480-85 VESA */
-        { NULL, 85, 640, 480, 27777, 80, 56, 25, 01, 56, 3,
-          0, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 7 800x600-56 VESA */
-        { NULL, 56, 800, 600, 27777, 128, 24, 22, 01, 72, 2,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 8 800x600-60 VESA */
-        { NULL, 60, 800, 600, 25000, 88, 40, 23, 01, 128, 4,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 9 800x600-72 VESA */
-        { NULL, 72, 800, 600, 20000, 64, 56, 23, 37, 120, 6,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 10 800x600-75 VESA */
-        { NULL, 75, 800, 600, 20202, 160, 16, 21, 01, 80, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 11 800x600-85 VESA */
-        { NULL, 85, 800, 600, 17761, 152, 32, 27, 01, 64, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 12 1024x768i-43 VESA */
-        { NULL, 43, 1024, 768, 22271, 56, 8, 41, 0, 176, 8,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_INTERLACED, FB_MODE_IS_VESA },
-        /* 13 1024x768-60 VESA */
-        { NULL, 60, 1024, 768, 15384, 160, 24, 29, 3, 136, 6,
-          0, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 14 1024x768-70 VESA */
-        { NULL, 70, 1024, 768, 13333, 144, 24, 29, 3, 136, 6,
-          0, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 15 1024x768-75 VESA */
-        { NULL, 75, 1024, 768, 12690, 176, 16, 28, 1, 96, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 16 1024x768-85 VESA */
-        { NULL, 85, 1024, 768, 10582, 208, 48, 36, 1, 96, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 17 1152x864-75 VESA */
-        { NULL, 75, 1152, 864, 9259, 256, 64, 32, 1, 128, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 18 1280x960-60 VESA */
-        { NULL, 60, 1280, 960, 9259, 312, 96, 36, 1, 112, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 19 1280x960-85 VESA */
-        { NULL, 85, 1280, 960, 6734, 224, 64, 47, 1, 160, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 20 1280x1024-60 VESA */
-        { NULL, 60, 1280, 1024, 9259, 248, 48, 38, 1, 112, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 21 1280x1024-75 VESA */
-        { NULL, 75, 1280, 1024, 7407, 248, 16, 38, 1, 144, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 22 1280x1024-85 VESA */
-        { NULL, 85, 1280, 1024, 6349, 224, 64, 44, 1, 160, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 23 1600x1200-60 VESA */
-        { NULL, 60, 1600, 1200, 6172, 304, 64, 46, 1, 192, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 24 1600x1200-65 VESA */
-        { NULL, 65, 1600, 1200, 5698, 304,  64, 46, 1, 192, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 25 1600x1200-70 VESA */
-        { NULL, 70, 1600, 1200, 5291, 304, 64, 46, 1, 192, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 26 1600x1200-75 VESA */
-        { NULL, 75, 1600, 1200, 4938, 304, 64, 46, 1, 192, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 27 1600x1200-85 VESA */
-        { NULL, 85, 1600, 1200, 4357, 304, 64, 46, 1, 192, 3,
-          FB_SYNC_HOR_HIGH_ACT | FB_SYNC_VERT_HIGH_ACT,
-          FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 28 1792x1344-60 VESA */
-        { NULL, 60, 1792, 1344, 4882, 328, 128, 46, 1, 200, 3,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 29 1792x1344-75 VESA */
-        { NULL, 75, 1792, 1344, 3831, 352, 96, 69, 1, 216, 3,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 30 1856x1392-60 VESA */
-        { NULL, 60, 1856, 1392, 4580, 352, 96, 43, 1, 224, 3,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 31 1856x1392-75 VESA */
-        { NULL, 75, 1856, 1392, 3472, 352, 128, 104, 1, 224, 3,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 32 1920x1440-60 VESA */
-        { NULL, 60, 1920, 1440, 4273, 344, 128, 56, 1, 200, 3,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 33 1920x1440-75 VESA */
-        { NULL, 75, 1920, 1440, 3367, 352, 144, 56, 1, 224, 3,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 34 1920x1200-60 RB VESA */
-        { NULL, 60, 1920, 1200, 6493, 80, 48, 26, 3, 32, 6,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 35 1920x1200-60 VESA */
-        { NULL, 60, 1920, 1200, 5174, 336, 136, 36, 3, 200, 6,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 36 1920x1200-75 VESA */
-        { NULL, 75, 1920, 1200, 4077, 344, 136, 46, 3, 208, 6,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 37 1920x1200-85 VESA */
-        { NULL, 85, 1920, 1200, 3555, 352, 144, 53, 3, 208, 6,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 38 2560x1600-60 RB VESA */
-        { NULL, 60, 2560, 1600, 3724, 80, 48, 37, 3, 32, 6,
-          FB_SYNC_HOR_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 39 2560x1600-60 VESA */
-        { NULL, 60, 2560, 1600, 2869, 472, 192, 49, 3, 280, 6,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 40 2560x1600-75 VESA */
-        { NULL, 75, 2560, 1600, 2256, 488, 208, 63, 3, 280, 6,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 41 2560x1600-85 VESA */
-        { NULL, 85, 2560, 1600, 1979, 488, 208, 73, 3, 280, 6,
-          FB_SYNC_VERT_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-        /* 42 2560x1600-120 RB VESA */
-        { NULL, 120, 2560, 1600, 1809, 80, 48, 85, 3, 32, 6,
-          FB_SYNC_HOR_HIGH_ACT, FB_VMODE_NONINTERLACED, FB_MODE_IS_VESA },
-};
-EXPORT_SYMBOL(fb_vesa_modes);
-#endif /* CONFIG_FB_VMODES */
-
 static struct cb_id uvesafb_cn_id = {
 	.idx = CN_IDX_V86D,
 	.val = CN_VAL_V86D_UVESAFB
@@ -198,7 +45,7 @@ static const struct fb_fix_screeninfo uvesafb_fix = {
 };
 
 static int mtrr		= 3;	/* enable mtrr by default */
-static bool blank	= 1;	/* enable blanking by default */
+static bool blank	= true;	/* enable blanking by default */
 static int ypan		= 1;	/* 0: scroll, 1: ypan, 2: ywrap */
 static bool pmi_setpal	= true; /* use PMI for palette changes */
 static bool nocrtc;		/* ignore CRTC settings */
@@ -320,7 +167,7 @@ static int uvesafb_exec(struct uvesafb_ktask *task)
 	memcpy(&m->id, &uvesafb_cn_id, sizeof(m->id));
 	m->seq = seq;
 	m->len = len;
-	m->ack = prandom_u32();
+	m->ack = get_random_u32();
 
 	/* uvesafb_task structure */
 	memcpy(m + 1, &task->t, sizeof(task->t));
@@ -576,7 +423,7 @@ static int uvesafb_vbe_getinfo(struct uvesafb_ktask *task,
 	task->t.flags = TF_VBEIB;
 	task->t.buf_len = sizeof(struct vbe_ib);
 	task->buf = &par->vbe_ib;
-	strncpy(par->vbe_ib.vbe_signature, "VBE2", 4);
+	memcpy(par->vbe_ib.vbe_signature, "VBE2", 4);
 
 	err = uvesafb_exec(task);
 	if (err || (task->t.regs.eax & 0xffff) != 0x004f) {
@@ -640,8 +487,9 @@ static int uvesafb_vbe_getmodes(struct uvesafb_ktask *task,
 		mode++;
 	}
 
-	par->vbe_modes = kzalloc(sizeof(struct vbe_mode_ib) *
-				par->vbe_modes_cnt, GFP_KERNEL);
+	par->vbe_modes = kcalloc(par->vbe_modes_cnt,
+				 sizeof(struct vbe_mode_ib),
+				 GFP_KERNEL);
 	if (!par->vbe_modes)
 		return -ENOMEM;
 
@@ -712,6 +560,8 @@ static int uvesafb_vbe_getpmi(struct uvesafb_ktask *task,
 	task->t.regs.eax = 0x4f0a;
 	task->t.regs.ebx = 0x0;
 	err = uvesafb_exec(task);
+	if (err)
+		return err;
 
 	if ((task->t.regs.eax & 0xffff) != 0x4f || task->t.regs.es < 0xc000) {
 		par->pmi_setpal = par->ypan = 0;
@@ -889,8 +739,8 @@ static void uvesafb_vbe_getmonspecs(struct uvesafb_ktask *task,
 	/* Add valid VESA modes to our modelist. */
 	for (i = 0; i < VESA_MODEDB_SIZE; i++) {
 		if (uvesafb_is_valid_mode((struct fb_videomode *)
-						&fb_vesa_modes[i], info))
-			fb_add_videomode(&fb_vesa_modes[i], &info->modelist);
+						&vesa_modes[i], info))
+			fb_add_videomode(&vesa_modes[i], &info->modelist);
 	}
 
 	for (i = 0; i < info->monspecs.modedb_len; i++) {
@@ -1012,7 +862,7 @@ static int uvesafb_vbe_init_mode(struct fb_info *info)
 	 * Convert the modelist into a modedb so that we can use it with
 	 * fb_find_mode().
 	 */
-	mode = kzalloc(i * sizeof(*mode), GFP_KERNEL);
+	mode = kcalloc(i, sizeof(*mode), GFP_KERNEL);
 	if (mode) {
 		i = 0;
 		list_for_each(pos, &info->modelist) {
@@ -1562,17 +1412,15 @@ static int uvesafb_check_var(struct fb_var_screeninfo *var,
 	return 0;
 }
 
-const struct fb_ops uvesafb_ops = {
+static struct fb_ops uvesafb_ops = {
 	.owner		= THIS_MODULE,
 	.fb_open	= uvesafb_open,
 	.fb_release	= uvesafb_release,
+	FB_DEFAULT_IOMEM_OPS,
 	.fb_setcolreg	= uvesafb_setcolreg,
 	.fb_setcmap	= uvesafb_setcmap,
 	.fb_pan_display	= uvesafb_pan_display,
 	.fb_blank	= uvesafb_blank,
-	.fb_fillrect	= cfb_fillrect,
-	.fb_copyarea	= cfb_copyarea,
-	.fb_imageblit	= cfb_imageblit,
 	.fb_check_var	= uvesafb_check_var,
 	.fb_set_par	= uvesafb_set_par,
 };
@@ -1591,8 +1439,8 @@ static void uvesafb_init_info(struct fb_info *info, struct vbe_mode_ib *mode)
 	info->fix.ywrapstep = (par->ypan > 1) ? 1 : 0;
 
 	/* Disable blanking if the user requested so. */
-	/* if (!blank)
-		info->fbops->fb_blank = NULL; */
+	if (!blank)
+		uvesafb_ops.fb_blank = NULL;
 
 	/*
 	 * Find out how much IO memory is required for the mode with
@@ -1658,11 +1506,10 @@ static void uvesafb_init_info(struct fb_info *info, struct vbe_mode_ib *mode)
 		par->ypan = 0;
 	}
 
-	info->flags = FBINFO_FLAG_DEFAULT |
-			(par->ypan ? FBINFO_HWACCEL_YPAN : 0);
+	info->flags = (par->ypan ? FBINFO_HWACCEL_YPAN : 0);
 
-	/* if (!par->ypan)
-		info->fbops->fb_pan_display = NULL; */
+	if (!par->ypan)
+		uvesafb_ops.fb_pan_display = NULL;
 }
 
 static void uvesafb_init_mtrr(struct fb_info *info)
@@ -1696,7 +1543,7 @@ static void uvesafb_ioremap(struct fb_info *info)
 static ssize_t uvesafb_show_vbe_ver(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
-	struct fb_info *info = platform_get_drvdata(to_platform_device(dev));
+	struct fb_info *info = dev_get_drvdata(dev);
 	struct uvesafb_par *par = info->par;
 
 	return snprintf(buf, PAGE_SIZE, "%.4x\n", par->vbe_ib.vbe_version);
@@ -1707,12 +1554,12 @@ static DEVICE_ATTR(vbe_version, S_IRUGO, uvesafb_show_vbe_ver, NULL);
 static ssize_t uvesafb_show_vbe_modes(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
-	struct fb_info *info = platform_get_drvdata(to_platform_device(dev));
+	struct fb_info *info = dev_get_drvdata(dev);
 	struct uvesafb_par *par = info->par;
 	int ret = 0, i;
 
 	for (i = 0; i < par->vbe_modes_cnt && ret < PAGE_SIZE; i++) {
-		ret += snprintf(buf + ret, PAGE_SIZE - ret,
+		ret += scnprintf(buf + ret, PAGE_SIZE - ret,
 			"%dx%d-%d, 0x%.4x\n",
 			par->vbe_modes[i].x_res, par->vbe_modes[i].y_res,
 			par->vbe_modes[i].depth, par->vbe_modes[i].mode_id);
@@ -1726,11 +1573,11 @@ static DEVICE_ATTR(vbe_modes, S_IRUGO, uvesafb_show_vbe_modes, NULL);
 static ssize_t uvesafb_show_vendor(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
-	struct fb_info *info = platform_get_drvdata(to_platform_device(dev));
+	struct fb_info *info = dev_get_drvdata(dev);
 	struct uvesafb_par *par = info->par;
 
 	if (par->vbe_ib.oem_vendor_name_ptr)
-		return snprintf(buf, PAGE_SIZE, "%s\n", (char *)
+		return sysfs_emit(buf, "%s\n", (char *)
 			(&par->vbe_ib) + par->vbe_ib.oem_vendor_name_ptr);
 	else
 		return 0;
@@ -1741,11 +1588,11 @@ static DEVICE_ATTR(oem_vendor, S_IRUGO, uvesafb_show_vendor, NULL);
 static ssize_t uvesafb_show_product_name(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
-	struct fb_info *info = platform_get_drvdata(to_platform_device(dev));
+	struct fb_info *info = dev_get_drvdata(dev);
 	struct uvesafb_par *par = info->par;
 
 	if (par->vbe_ib.oem_product_name_ptr)
-		return snprintf(buf, PAGE_SIZE, "%s\n", (char *)
+		return sysfs_emit(buf, "%s\n", (char *)
 			(&par->vbe_ib) + par->vbe_ib.oem_product_name_ptr);
 	else
 		return 0;
@@ -1756,11 +1603,11 @@ static DEVICE_ATTR(oem_product_name, S_IRUGO, uvesafb_show_product_name, NULL);
 static ssize_t uvesafb_show_product_rev(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
-	struct fb_info *info = platform_get_drvdata(to_platform_device(dev));
+	struct fb_info *info = dev_get_drvdata(dev);
 	struct uvesafb_par *par = info->par;
 
 	if (par->vbe_ib.oem_product_rev_ptr)
-		return snprintf(buf, PAGE_SIZE, "%s\n", (char *)
+		return sysfs_emit(buf, "%s\n", (char *)
 			(&par->vbe_ib) + par->vbe_ib.oem_product_rev_ptr);
 	else
 		return 0;
@@ -1771,11 +1618,11 @@ static DEVICE_ATTR(oem_product_rev, S_IRUGO, uvesafb_show_product_rev, NULL);
 static ssize_t uvesafb_show_oem_string(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
-	struct fb_info *info = platform_get_drvdata(to_platform_device(dev));
+	struct fb_info *info = dev_get_drvdata(dev);
 	struct uvesafb_par *par = info->par;
 
 	if (par->vbe_ib.oem_string_ptr)
-		return snprintf(buf, PAGE_SIZE, "%s\n",
+		return sysfs_emit(buf, "%s\n",
 			(char *)(&par->vbe_ib) + par->vbe_ib.oem_string_ptr);
 	else
 		return 0;
@@ -1786,16 +1633,16 @@ static DEVICE_ATTR(oem_string, S_IRUGO, uvesafb_show_oem_string, NULL);
 static ssize_t uvesafb_show_nocrtc(struct device *dev,
 		struct device_attribute *attr, char *buf)
 {
-	struct fb_info *info = platform_get_drvdata(to_platform_device(dev));
+	struct fb_info *info = dev_get_drvdata(dev);
 	struct uvesafb_par *par = info->par;
 
-	return snprintf(buf, PAGE_SIZE, "%d\n", par->nocrtc);
+	return sysfs_emit(buf, "%d\n", par->nocrtc);
 }
 
 static ssize_t uvesafb_store_nocrtc(struct device *dev,
 		struct device_attribute *attr, const char *buf, size_t count)
 {
-	struct fb_info *info = platform_get_drvdata(to_platform_device(dev));
+	struct fb_info *info = dev_get_drvdata(dev);
 	struct uvesafb_par *par = info->par;
 
 	if (count > 0) {
@@ -1908,6 +1755,7 @@ static int uvesafb_probe(struct platform_device *dev)
 out_unmap:
 	iounmap(info->screen_base);
 out_mem:
+	arch_phys_wc_del(par->mtrr_handle);
 	release_mem_region(info->fix.smem_start, info->fix.smem_len);
 out_reg:
 	release_region(0x3c0, 32);
@@ -1923,34 +1771,30 @@ out:
 	return err;
 }
 
-static int uvesafb_remove(struct platform_device *dev)
+static void uvesafb_remove(struct platform_device *dev)
 {
 	struct fb_info *info = platform_get_drvdata(dev);
+	struct uvesafb_par *par = info->par;
 
-	if (info) {
-		struct uvesafb_par *par = info->par;
+	sysfs_remove_group(&dev->dev.kobj, &uvesafb_dev_attgrp);
+	unregister_framebuffer(info);
+	release_region(0x3c0, 32);
+	iounmap(info->screen_base);
+	arch_phys_wc_del(par->mtrr_handle);
+	release_mem_region(info->fix.smem_start, info->fix.smem_len);
+	fb_destroy_modedb(info->monspecs.modedb);
+	fb_dealloc_cmap(&info->cmap);
 
-		sysfs_remove_group(&dev->dev.kobj, &uvesafb_dev_attgrp);
-		unregister_framebuffer(info);
-		release_region(0x3c0, 32);
-		iounmap(info->screen_base);
-		arch_phys_wc_del(par->mtrr_handle);
-		release_mem_region(info->fix.smem_start, info->fix.smem_len);
-		fb_destroy_modedb(info->monspecs.modedb);
-		fb_dealloc_cmap(&info->cmap);
+	kfree(par->vbe_modes);
+	kfree(par->vbe_state_orig);
+	kfree(par->vbe_state_saved);
 
-		kfree(par->vbe_modes);
-		kfree(par->vbe_state_orig);
-		kfree(par->vbe_state_saved);
-
-		framebuffer_release(info);
-	}
-	return 0;
+	framebuffer_release(info);
 }
 
 static struct platform_driver uvesafb_driver = {
 	.probe  = uvesafb_probe,
-	.remove = uvesafb_remove,
+	.remove_new = uvesafb_remove,
 	.driver = {
 		.name = "uvesafb",
 	},
@@ -1976,19 +1820,19 @@ static int uvesafb_setup(char *options)
 		else if (!strcmp(this_opt, "ywrap"))
 			ypan = 2;
 		else if (!strcmp(this_opt, "vgapal"))
-			pmi_setpal = 0;
+			pmi_setpal = false;
 		else if (!strcmp(this_opt, "pmipal"))
-			pmi_setpal = 1;
+			pmi_setpal = true;
 		else if (!strncmp(this_opt, "mtrr:", 5))
 			mtrr = simple_strtoul(this_opt+5, NULL, 0);
 		else if (!strcmp(this_opt, "nomtrr"))
 			mtrr = 0;
 		else if (!strcmp(this_opt, "nocrtc"))
-			nocrtc = 1;
+			nocrtc = true;
 		else if (!strcmp(this_opt, "noedid"))
-			noedid = 1;
+			noedid = true;
 		else if (!strcmp(this_opt, "noblank"))
-			blank = 0;
+			blank = false;
 		else if (!strncmp(this_opt, "vtotal:", 7))
 			vram_total = simple_strtoul(this_opt + 7, NULL, 0);
 		else if (!strncmp(this_opt, "vremap:", 7))
@@ -2023,7 +1867,7 @@ static ssize_t v86d_show(struct device_driver *dev, char *buf)
 static ssize_t v86d_store(struct device_driver *dev, const char *buf,
 		size_t count)
 {
-	strncpy(v86d_path, buf, PATH_MAX);
+	strncpy(v86d_path, buf, PATH_MAX - 1);
 	return count;
 }
 static DRIVER_ATTR_RW(v86d);
@@ -2084,10 +1928,10 @@ static void uvesafb_exit(void)
 		}
 	}
 
-	cn_del_callback(&uvesafb_cn_id);
 	driver_remove_file(&uvesafb_driver.driver, &driver_attr_v86d);
 	platform_device_unregister(uvesafb_device);
 	platform_driver_unregister(&uvesafb_driver);
+	cn_del_callback(&uvesafb_cn_id);
 }
 
 module_exit(uvesafb_exit);
@@ -2132,7 +1976,7 @@ MODULE_PARM_DESC(noedid,
 module_param(vram_remap, uint, 0);
 MODULE_PARM_DESC(vram_remap, "Set amount of video memory to be used [MiB]");
 module_param(vram_total, uint, 0);
-MODULE_PARM_DESC(vram_total, "Set total amount of video memoery [MiB]");
+MODULE_PARM_DESC(vram_total, "Set total amount of video memory [MiB]");
 module_param(maxclk, ushort, 0);
 MODULE_PARM_DESC(maxclk, "Maximum pixelclock [MHz], overrides EDID data");
 module_param(maxhf, ushort, 0);
