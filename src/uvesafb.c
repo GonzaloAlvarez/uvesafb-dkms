@@ -893,8 +893,8 @@ static void uvesafb_vbe_getmonspecs(struct uvesafb_ktask *task,
 	/* Add valid VESA modes to our modelist. */
 	for (i = 0; i < VESA_MODEDB_SIZE; i++) {
 		if (uvesafb_is_valid_mode((struct fb_videomode *)
-						&vesa_modes[i], info))
-			fb_add_videomode(&vesa_modes[i], &info->modelist);
+						&fb_vesa_modes[i], info))
+			fb_add_videomode(&fb_vesa_modes[i], &info->modelist);
 	}
 
 	for (i = 0; i < info->monspecs.modedb_len; i++) {
